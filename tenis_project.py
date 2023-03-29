@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 df=pd.read_csv("tenis_verisi.txt")
 print(df)
-#humidity i tahmin edicez
-# Veri önişleme
-# kategorik verileri numerice çevirme
+# Predict humidity 
+# Data Preprocessing
+# convert categorical data to numeric
 outlook=df.iloc[:,0:1].values
 print(outlook)
 from sklearn import preprocessing
@@ -18,16 +18,16 @@ windy=df.iloc[:,3:4].values
 windy[:,0]=le.fit_transform(df.iloc[:,3])
 print(windy)
 windy=ohe.fit_transform(windy).toarray()
-# 1. kolonda 0:false 1:true 0.kolonda tam tersi
+
 play=df.iloc[:,-1:].values
 play[:,-1]=le.fit_transform(df.iloc[:,-1])
 print(play)
 play=ohe.fit_transform(play).toarray()
-#1. kolonda 0:no,1:yes
-#play ve windy için aslında label encoding yapmak daha doğru
 
 
-##DataFrame oluşturma
+
+
+##DataFrame build
 temp=df.iloc[:,1:2].values
 temp_df=pd.DataFrame(data=temp,
                      index=range(14),
